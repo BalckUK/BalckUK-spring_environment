@@ -8,7 +8,7 @@ public class ExceptionContoller {
 	//오류처리 일괄
 	public String exceptionHandler(Exception e) {
 		e.printStackTrace();
-		System.out.println("에러테스트입니다");
+		System.out.println("에러테스트입니다123");
 		return "error";
 	}
 	
