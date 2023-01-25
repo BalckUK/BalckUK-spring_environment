@@ -57,6 +57,18 @@ public class HomeController {
 		return "main";
 	}
 
+//	@RequestMapping("/inserttest")
+//	public String inserttest() {
+//		try {
+//			testservice.insertUser();
+//		} catch (Exception e) {
+//			System.out.println("오류 발생 ");
+//			e.printStackTrace();
+//			return "home";
+//		}
+//		return "home";
+//	}
+
 	@RequestMapping(value = "/")
 	public String home() {
 		System.out.println("숫자 : " + testservice.testcount());

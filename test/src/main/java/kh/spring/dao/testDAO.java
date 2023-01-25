@@ -32,4 +32,12 @@ public class testDAO {
 		List<testDTO> list = mybaits.selectList("mapper.test.selecttest");
 		return list;
 	}
+	
+	public void insertuser() {
+		mybaits.insert("mapper.test.inserttest");
+	}
+	
+	public int insertuser2() {
+		return mybaits.insert("mapper.test.inserttest2");
+	}
 }

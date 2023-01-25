@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import kh.spring.dao.test2DAO;
 import kh.spring.dao.testDAO;
@@ -28,5 +31,11 @@ public class testService {
 	
 	public List<testDTO> test2DAOlist(){
 		return test2dao.listdto();
+	}
+	
+	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
+	public int insertUser() {
+		testdao.insertuser();
+		return testdao.insertuser2();
 	}
 }

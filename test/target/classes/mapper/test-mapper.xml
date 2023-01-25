@@ -10,4 +10,13 @@
 	<select id="numbercount" resultType="int">
 		select count(*) from member
 	</select>
+	
+	<insert id="inserttest">
+		INSERT INTO userinfo values('홍길동', 11)
+	</insert>
+	
+	<insert id="inserttest2">
+		INSERT INTO userinfo values('홍길동', 'test')
+	</insert>
+	
 </mapper>

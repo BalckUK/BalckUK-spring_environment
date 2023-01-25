@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+
+	<!-- Spring Quartz Start -->
+	<!-- Job -->
+	<!-- bean의 id인 job은 원하는 이름으로 설정 가능 -->
+	<bean id="job"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+
+		<!-- property의 ref는 스케줄러 서비스 구현 객체(ServiceImpl)의 bean 이름(다음 코드블럭 참고) -->
+		<property name="targetObject" ref="ScheduleJob" />
+
+		<!-- property의 value는 스케줄러 서비스 구현 객체에서 스케줄러를 사용할(주기적으로 실행할) 메소드 -->
+		<property name="targetMethod" value="saveTest" />
+
+		<!-- 동시 실행 방지 기능(단일 서버에서 작동하는 기능으로 보임) -->
+		<property name="concurrent" value="false" />
+	</bean>
+
+	<!-- Trigger -->
+	<!-- bean의 id인 jobTrigger는 원하는 이름으로 설정 가능 -->
+	<bean id="jobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<!-- property의 ref는 job의 id와 일치시켜야 함 -->
+		<property name="jobDetail" ref="job" />
+		<!-- cron표현식으로 스케줄러가 주기적으로 실행될 기간 설정 가능, 현재 value의 크론식은 1시간마다 -->
+		<property name="cronExpression"
+			value="0/5 * * * * ?" />
+	</bean>
+
+	<!-- Scheduler -->
+	<!-- bean의 id인 jobScheduler는 원하는 이름으로 설정 가능 -->
+	<bean id="jobScheduler"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<!-- 스케줄러로 작동시킬 트리거 목록 지정(여러 개의 트리거를 등록해 사용 가능) -->
+		<property name="triggers">
+			<!-- list안에 작성한 트리거를 추가 -->
+			<list>
+				<!-- ref의 bean 값은 트리거 id값 -->
+				<ref bean="jobTrigger" />
+			</list>
+		</property>
+		<!-- quartzProperties를 설정 가능한 곳(name 안에서 자동완성(ctrl + space) 기능을 실행해보면 그 
+			외 여러가지 항목이 있음 -->
+		<property name="quartzProperties">
+			<props>
+				<!-- 클러스터링 설정(동작 여부는 제대로 확인되지 않음) -->
+				<prop
+					key="org.springframework.scheduling.quartz.jobStore.isClustered">true</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- Spring Quartz End -->
+</beans>
