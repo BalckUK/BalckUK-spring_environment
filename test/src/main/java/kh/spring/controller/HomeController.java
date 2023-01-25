@@ -8,19 +8,21 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Properties;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,8 +37,15 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@PropertySource(value= {"classpath:/property/khtest.properties"})
 public class HomeController {
 
+	@Value("${kh.moretest}")
+	private String moretest;
+	
+	@Value("${kh.test}")
+	private String khtest;
+	
 	@Autowired
 	private testService testservice;
 
@@ -45,7 +54,14 @@ public class HomeController {
 
 	@Autowired
 	private FileVaildator fileValidator;
+	
 
+	@Resource(name="testproperties")
+	private Properties testproperties;
+	
+	@Resource(name="khtestproperties")
+	private Properties khtestproperties;
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -71,12 +87,22 @@ public class HomeController {
 
 	@RequestMapping(value = "/")
 	public String home() {
+		System.out.println("내가 만든 프로퍼티 : "+ khtestproperties.getProperty("kh.test"));
+		System.out.println("프로퍼티 test : "+ testproperties.getProperty("jdbc.Username"));
 		System.out.println("숫자 : " + testservice.testcount());
 		System.out.println("리스트  : " + testservice.selectlistservice());
 		System.out.println("다른방식 test : " + testImple.test1list());
 		System.out.println("새로운 방식: " + testservice.test2DAOlist());
 		return "home";
 	}
+	
+	@RequestMapping(value="/testproperties")
+	public String testproperties() {
+		System.out.println("한글은요 : "+ khtest);
+		System.out.println("프로퍼티요 : "+ moretest);
+		return "home";
+	}
+	
 
 	@RequestMapping(value = "/home")
 	public String home2() {

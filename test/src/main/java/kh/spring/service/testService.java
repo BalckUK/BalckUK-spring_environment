@@ -3,6 +3,7 @@ package kh.spring.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -38,4 +39,5 @@ public class testService {
 		testdao.insertuser();
 		return testdao.insertuser2();
 	}
+	
 }
