@@ -39,6 +39,11 @@
 		<beans:property name="order" value="2" />
 	</beans:bean>
 	
+	<beans:bean class="kh.spring.exception.CustomExceptionResolver">
+		<beans:property name="order" value="3"></beans:property>
+	</beans:bean>
+	
+	
 	
 	<util:properties id="testproperties" location="classpath:/property/test.properties" />
 	<util:properties id="khtestproperties" location="classpath:/property/khtest.properties" />

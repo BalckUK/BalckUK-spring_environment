@@ -75,8 +75,13 @@ public class HomeController {
 	
 	@RequestMapping("/testerror")
 	public String testerror() {
-		int k = "test";
+//		int k = "test";
 		return "/error/error";
+	}
+	
+	@RequestMapping(value="/makeError")
+	public void makeError() throws Exception{
+		throw new NullPointerException();
 	}
 	
 
