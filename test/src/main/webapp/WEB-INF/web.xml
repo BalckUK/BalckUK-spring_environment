@@ -56,7 +56,7 @@
 	</filter-mapping>
 	
 	
-	<!-- ?먮윭?섏씠吏 filter -->
+	<!-- 오류처리 filter -->
 <!-- 	<error-page> -->
 <!-- 		<error-code>400</error-code> -->
 <!-- 		<location>/WEB-INF/views/error/error.jsp</location> -->

@@ -72,6 +72,13 @@ public class HomeController {
 	public String tilesmethod() {
 		return "main";
 	}
+	
+	@RequestMapping("/testerror")
+	public String testerror() {
+		int k = "test";
+		return "/error/error";
+	}
+	
 
 //	@RequestMapping("/inserttest")
 //	public String inserttest() {

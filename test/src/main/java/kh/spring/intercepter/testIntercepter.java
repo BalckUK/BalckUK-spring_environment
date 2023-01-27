@@ -15,23 +15,33 @@ public class testIntercepter extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-//		if (log.isDebugEnabled()) {
-			
-			System.out.println("인터셉트테스트입니다 preHandle");
-//			log.debug("========================");
-//			log.debug("Request URL \t: " + request.getRequestURI());
-//		}
+
+		System.out.println("인터셉트테스트입니다 preHandle");
 		return super.preHandle(request, response, handler);
-	}
+	} 
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		if (log.isDebugEnabled()) {
-			
-			System.out.println("인터셉트테스트입니다 postHandle");
-			log.debug("===================        END        ===================\n");
-		}
+
+		System.out.println("인터셉트테스트입니다 postHandle");
 	}
 
+	@Override
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+			throws Exception {
+		
+		System.out.println("인터셉트테스트입니다 afterCompletion");
+		
+		super.afterCompletion(request, response, handler, ex);
+	}
+
+	@Override
+	public void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		
+		System.out.println("인터셉트테스트입니다 afterConcurrentHandlingStarted");
+		
+		super.afterConcurrentHandlingStarted(request, response, handler);
+	}
 }
