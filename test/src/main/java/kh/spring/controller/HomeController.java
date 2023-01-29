@@ -99,12 +99,12 @@ public class HomeController {
 
 	@RequestMapping(value = "/")
 	public String home() throws Exception {
-//		System.out.println("내가 만든 프로퍼티 : " + encoding.Encodingmethod(khtest));
-//		System.out.println("프로퍼티 test : " + testproperties.getProperty("jdbc.Username"));
-//		System.out.println("숫자 : " + testservice.testcount());
-//		System.out.println("리스트  : " + testservice.selectlistservice());
-//		System.out.println("다른방식 test : " + testImple.test1list());
-//		System.out.println("새로운 방식: " + testservice.test2DAOlist());
+		System.out.println("내가 만든 프로퍼티 : " + encoding.Encodingmethod(khtest));
+		System.out.println("프로퍼티 test : " + testproperties.getProperty("jdbc.Username"));
+		System.out.println("숫자 : " + testservice.testcount());
+		System.out.println("리스트  : " + testservice.selectlistservice());
+		System.out.println("다른방식 test : " + testImple.test1list());
+		System.out.println("새로운 방식: " + testservice.test2DAOlist());
 		return "home";
 	}
 

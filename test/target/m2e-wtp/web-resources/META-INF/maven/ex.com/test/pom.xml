@@ -14,6 +14,7 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		<org.apache.tiles-version>3.0.3</org.apache.tiles-version>
+		<swagger.version>2.9.2</swagger.version>
 	</properties>
 
 	<!-- properties 보다 위에 넣어주도록 하자 -->
@@ -23,6 +24,8 @@
 			<url>http://maven.jahia.org/maven2</url>
 		</repository>
 	</repositories>
+
+
 
 	<dependencies>
 		<!-- Logback -->
@@ -38,6 +41,17 @@
 		<!-- <version>1.2.3</version> -->
 		<!-- </dependency> -->
 
+		<!-- springfox-swagger2 -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
 
 
 		<dependency>

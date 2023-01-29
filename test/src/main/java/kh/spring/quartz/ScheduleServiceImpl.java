@@ -11,6 +11,6 @@ public class ScheduleServiceImpl implements ScheduleService {
 	// 스케줄러로 작동할 메소드(xml파일 job의 targetMethod 부분에 설정)
 	@Override
 	public void saveTest() {
-//		System.out.println("스케줄러 테스트입니다");
+		System.out.println("스케줄러 테스트입니다");
 	}
 }
